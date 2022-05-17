@@ -1,4 +1,4 @@
-// 0502_오후 5시
+// 0502
 
 package db.product;
 
@@ -25,7 +25,6 @@ public class PartsDao implements PartsInterface {
 
 	@Override
 	public String search(String code) { // 코드 찾기
-		
 		conn = new DBProductConn().getConn();	//각각 열고 닫아서 충돌 예방
 
 		String sql = "select codeName, price from parts " 
@@ -94,7 +93,7 @@ public class PartsDao implements PartsInterface {
 
 		conn = new DBProductConn().getConn();
 
-		// list로 만들어 반환하라.
+		// list로 만들어 반환
 		List<PartsVo> list = new ArrayList<PartsVo>();
 
 		String sql = "select code, codeName, spec, price " 
