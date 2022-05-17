@@ -1,12 +1,4 @@
-//0429_오후 미션_2
-
-// 다른분꺼 참고해서 일단은 완 근데 이해가 잘 안됌 ㅠ!
-// 낼 리뷰해줄때 보기!
-
-// 여러개 같이 사용중
-// DBConn
-// StudentInterface, StudentDao, StudentVo, StudentInput, StudentModify, StudentDelete;
-// ScoreInterface, ScoreDao, ScoreVo, ScoreInput, ScoreModify, ScoreDelete;
+//0429_오후
 
 package db;
 
