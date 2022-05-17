@@ -1,4 +1,4 @@
-//0502_오후
+//0502
 
 package db.product;
 
@@ -18,7 +18,7 @@ public class DBProductConn {
 	// 생성자
 	DBProductConn() {
 		try {
-			Class.forName(driver);// driver를 호출하겠다.
+			Class.forName(driver);
 			this.conn = DriverManager.getConnection(path, user, pwd);
 		} catch (Exception e) {
 			e.printStackTrace();
