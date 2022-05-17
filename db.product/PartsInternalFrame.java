@@ -70,11 +70,11 @@ public class PartsInternalFrame extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	// 생성자메서드
 	public PartsInternalFrame() {
 		super("제품관리", true, true, true, true);
-		// 부모생성자 //자기자신은 this()
-		// 무조건 첫번째줄에 둬야함 //부모생성자를 부르거나 자기자신을 부를때는 항상 맨 첫번쨰줄로 해야한다.
+
 		setBounds(20, 80, 721, 429);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setFont(new Font("나눔고딕", Font.PLAIN, 10));
@@ -294,8 +294,8 @@ public class PartsInternalFrame extends JInternalFrame {
 							status.setText("데이터가 수정되었습니다.");
 							btnFind.doClick();
 							clear();
-							tfCode.requestFocus(); //데이터 수정후 커서 위치를 code로
-							btnInsert.setEnabled(true); //저장버튼 활성화
+							tfCode.requestFocus(); // 데이터 수정후 커서 위치를 code로 이동
+							btnInsert.setEnabled(true); // 저장버튼 활성화
 						} 
 						
 					}catch(Exception ex) {
@@ -367,7 +367,7 @@ public class PartsInternalFrame extends JInternalFrame {
 			btnFind.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
-					//검색을 누르면 왼쪽 tf부분 true로 세팅
+					//검색을 눌러야만 왼쪽 tf부분 true로 세팅
 					tfCodeName.setEnabled(true);
 					tfSpec.setEnabled(true);
 					tfPrice.setEnabled(true);
@@ -378,8 +378,6 @@ public class PartsInternalFrame extends JInternalFrame {
 
 					for (int i = 0; i < list.size(); i++) {
 						list.get(i).setNo(i + 1); // no값
-						// list에서 i(no)를 가지고 올거고,
-						// no에 세팅을 하세요 //i가 0베이스 니까 +1하세요!
 						model.addRow(list.get(i).getVector());
 					}
 				}
@@ -447,11 +445,10 @@ public class PartsInternalFrame extends JInternalFrame {
 						String code = tfCode.getText().trim();
 						PartsVo vo = dao.selectOne(code);
 						
-						//조회를 누르면 작성할 수 있게 세팅
+						//조회를 눌러야만 작성할 수 있게 세팅
 						tfCodeName.setEnabled(true);
 						tfSpec.setEnabled(true);
-						tfPrice.setEnabled(true);
-						//미리 다 입력하고 조회 눌렀더니 clear되어버려서 정보가 사라져서 세팅해둠						
+						tfPrice.setEnabled(true);						
 
 						if (code != null) {
 							tfCodeName.setText(vo.getCodeName());
@@ -459,7 +456,7 @@ public class PartsInternalFrame extends JInternalFrame {
 							tfPrice.setText(vo.getPrice() + "");
 							status.setText("기존의 제품 정보가 확인되었습니다. "
 							              + "수정이나 삭제를 계속해주세요.");
-							btnInsert.setEnabled(false); // 정보가 있으면 수정,삭제만
+							btnInsert.setEnabled(false); // 정보가 있으면 수정, 삭제만
 							
 						} else {
 							//
@@ -504,11 +501,9 @@ public class PartsInternalFrame extends JInternalFrame {
 					status.setText("제품 검색이 취소되었습니다.");
 					clear();	
 					
-					//조회를 누르면 작성할 수 있게 세팅 //취소 누르면 다시 enabled false로 세팅
 					tfCodeName.setEnabled(false);
 					tfSpec.setEnabled(false);
-					tfPrice.setEnabled(false);
-					
+					tfPrice.setEnabled(false);	
 				}
 			});
 			btnUndo.setForeground(Color.WHITE);
