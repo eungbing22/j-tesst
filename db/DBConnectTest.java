@@ -1,5 +1,4 @@
 // 0428_1 
-// 오전 10시반~ 오후 12시 20분
 
 package db;
 
@@ -18,17 +17,16 @@ public class DBConnectTest {
 		String pwd = "1111";
 
 		try {
-			Class.forName(driver); // 호출만 하겠다! 라는 뜻인가요 ㅠㅠ
+			Class.forName(driver);
 			System.out.println("driver loading ok...");
 
 			Connection conn = DriverManager.getConnection(path, user, pwd);
 			System.out.println("connection ok...");
-			// conn.close(); // 왜 닫았나요 ㅠㅠ
+			// conn.close();
 
 			// 0) employees 테이블에서 firstName을 출력
 			String sql = "select firstName from employees";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			// 실행되면 문자열에서 statement 형태로 변경이 되어진다.
 			ResultSet rs = ps.executeQuery();
 
 			//
@@ -39,10 +37,10 @@ public class DBConnectTest {
 			}
 
 			// 1) employees 테이블에서 firstName과 email을 출력
-			// 위에서 사용한 sql 재활용
+			// 위에서 사용한 sql 다시 활용
 			sql = "select firstName,email from employees";
 
-			// 문자열을 매개변수로 connection을 만드는게 PreparedStatement의 기능이다.
+			// 문자열을 매개변수로 connection을 만드는게 PreparedStatement의 기능
 			ps = conn.prepareStatement(sql);
 
 			// statement를 실행
@@ -61,35 +59,17 @@ public class DBConnectTest {
 			 * officeCode가 1번인 직원들의 employeeNumber,firstName,jobTitle 을 출력하시오.
 			 */
 
-			// 은빈 푼거
-			sql = "select employeeNumber,firstName,jobTitle from employees where officeCode=1";
-			// 숫자 문자 문자
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				Integer employeeNumber = rs.getInt("employeeNumber");
-				String firstName = rs.getString("firstName");
-				String jobTitle = rs.getString("jobTitle");
-
-				System.out.println(employeeNumber + "/" + firstName + "/" + jobTitle);
-
-			}
-
-			// 쌤이 풀어주신거 한번 더 풀어봄
-			System.out.println("-------------------쌤ex");
-
 			sql = "select employeeNumber,firstName,jobTitle from employees " 
 				+ "where officeCode=1";
-			// 줄바꿈을 할때는 공백 하나를 만들어야한다!
+			// 줄바꿈을 할때는 공백 하나를 만들어야 한다!
 
 			ps = conn.prepareStatement(sql);
-			// 자바가 인지할수있게 prepareStatement 하세욥
+			// 자바가 인지할수있게 prepareStatement
 
 			rs = ps.executeQuery();
-			// 실행하세욥 // select는 무조건 executeQuery() 이거고, select 이외의
-			// 나머지는update,delete -> executeUpdate()로 한다는거 같다심~
+			// 실행
 
-			// 출력하기
+			// 출력
 			while (rs.next()) {
 				int en = rs.getInt("employeeNumber");
 				String fn = rs.getString("firstName");
@@ -105,8 +85,7 @@ public class DBConnectTest {
 	}
 
 	public static void main(String[] args) {
-		new DBConnectTest(); // 아너니머스로 할거
-		// DBConnectTest dt = new DBConnectTest();
+		new DBConnectTest();
 
 	}
 
