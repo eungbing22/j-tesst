@@ -1,4 +1,4 @@
-//0429_오후 미션_2
+//0429_오후
 
 // 여러개 같이 사용중
 // DBConn
@@ -26,10 +26,10 @@ public class ScoreDao implements ScoreInterface {
 			this.conn = new DBConn().getConn();
 		}
 	
-	// 다른분꺼 참고 //getSno라는 메서드 생성
+	//getSno 메서드
 	public int getSno() {
 		int sno = 0;
-		String sql = "select max(sno) as k from score";	//score의 가장 큰 값을 가지고 와! 거기에 auto_increment 적용
+		String sql = "select max(sno) as k from score";	//score의 가장 큰 값을 가지고 와서, auto_increment 적용
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -44,13 +44,12 @@ public class ScoreDao implements ScoreInterface {
 		}
 		return sno;
 	}
-	// 다른분꺼 참고한고
 	
 	@Override
 	public boolean insert(ScoreVo vo) {
 		boolean b = false;
 		String sql = "insert into score(id, subject, score, nal) "	
-				+ "values(?, ?, ?, ?)";		//sno 자동, mName자동이라 생략
+				+ "values(?, ?, ?, ?)";		//sno, mName자동이라 생략
 		try {			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,  vo.getId());
@@ -58,7 +57,7 @@ public class ScoreDao implements ScoreInterface {
 			ps.setInt(3, vo.getScore());
 			ps.setString(4, vo.getNal());
 			
-			conn.setAutoCommit(false); //이왕이면 써주자!
+			conn.setAutoCommit(false); 
 			int n = ps.executeUpdate();
 			
 			if(n>0) {
@@ -73,7 +72,6 @@ public class ScoreDao implements ScoreInterface {
 		}
 		return b;
 	}
-	//참고해서 작성한고 
 	
 	@Override
 	public String search(String id) {
@@ -96,7 +94,6 @@ public class ScoreDao implements ScoreInterface {
 		}
 		return mName;
 	}
-	// 다른분꺼 참고함 ㅠㅠ
 
 	@Override
 	public boolean update(ScoreVo vo) {
@@ -134,7 +131,7 @@ public class ScoreDao implements ScoreInterface {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, sno);
 			
-			conn.setAutoCommit(false); // 수동으로 transaction 만들기!
+			conn.setAutoCommit(false); // 수동으로 transaction 실행
 			int n = ps.executeUpdate();
 			
 			if(n>0) {
@@ -151,7 +148,7 @@ public class ScoreDao implements ScoreInterface {
 
 	@Override
 	public List<ScoreVo> select(String findStr) {
-		// list로 만들어서 반환하라.
+		// list로 만들어서 반환
 		List<ScoreVo> list = new ArrayList<ScoreVo>();
 		
 		String sql = "select c.sno, s.mName, c.subject, c.score, c.nal " 
@@ -190,7 +187,6 @@ public class ScoreDao implements ScoreInterface {
 
 	@Override
 	public ScoreVo selectOne(int sno) {
-		//insert에서 사용할 것
 		
 		String sql = "";
 		ScoreVo vo = null;
@@ -207,7 +203,6 @@ public class ScoreDao implements ScoreInterface {
 			
 			if(rs.next()) {
 			vo = new ScoreVo(	//Sno는 자동
-			//	rs.getInt("c.sno"),
 				rs.getString("s.id"),
 				rs.getString("s.mName"),
 				rs.getString("c.subject"),
@@ -220,40 +215,5 @@ public class ScoreDao implements ScoreInterface {
 		}
 		return vo;
 	}
-
-	//제꺼는 걍 뺴고 다른걸로 추가했슈
-	//overloding 중복선언!
-	/* 
-	 * @Override
-	public ScoreVo selectOne(String id) {
-		String sql = "";
-		ScoreVo vo = null;
-		
-		try {
-			sql = "select s.id, s.mNme, c.subject, c.score, c.nal " 
-				+ "from student "
-				+ "on s.id = c.id " 
-				+ "where id=?";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				vo = new ScoreVo(
-						//값이 있으면 가져와!
-					rs.getString("s.id"),
-					rs.getString("s.mName"),
-					rs.getString("subject"),
-					rs.getInt("score"),
-					rs.getString("nal")						
-					);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return vo;
-	}
-	 */
 
 }
