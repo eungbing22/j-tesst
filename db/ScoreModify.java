@@ -1,9 +1,4 @@
-//0429_오후 미션_2
-
-// 여러개 같이 사용중
-// DBConn
-// StudentInterface, StudentDao, StudentVo, StudentInput, StudentModify, StudentDelete;
-// ScoreInterface, ScoreDao, ScoreVo, ScoreInput, ScoreModify, ScoreDelete;
+// 0429
 
 package db;
 
@@ -171,16 +166,13 @@ public class ScoreModify extends JPanel {
 					
 					ScoreVo vo = new ScoreVo();
 					
-					int sno = Integer.parseInt(tfSno.getText().trim()); // 수정이 안되서 넣음
+					int sno = Integer.parseInt(tfSno.getText().trim());
 					String id = tfId.getText().trim();
 					String mName = tfName.getText().trim();
 					String subject = tfSubject.getText().trim();
 					int score = Integer.parseInt(tfScore.getText().trim());
 					String nal = tfNal.getText().trim();
 					
-					//ScoreVo vo = new ScoreVo(sno, id, mName, subject, score, nal);
-
-					//갯수 안맞아서 그냥이렇게 대입
 					vo.setSno(sno);
 					vo.setId(id);
 					vo.setmName(mName);
@@ -224,7 +216,7 @@ public class ScoreModify extends JPanel {
 						tfSubject.setText("");
 						tfScore.setText("");
 						tfNal.setText("");
-						tfSno.requestFocus(); //쌤꺼보고 추가함 // 순번으로 가세욥
+						tfSno.requestFocus(); // 삭제후 sno로 이동
 						
 					}else {
 						ScoreFrame.status.setText("삭제 중 오류가 발생하였습니다.");
@@ -265,7 +257,7 @@ public class ScoreModify extends JPanel {
 					
 					int sno = Integer.parseInt(tfSno.getText().trim());
 					ScoreVo vo = dao.selectOne(sno);
-					if(vo!=null) {	//값이 있으면
+					if(vo!=null) {
 						ScoreFrame.status.setText("성적 정보를 수정해주세요.");
 						
 						tfId.setText(vo.getId());
@@ -278,7 +270,6 @@ public class ScoreModify extends JPanel {
 						tfName.setEditable(false);
 						
 					}else {
-						//try catch 여기다 넣고 싶음 넘버포맷 따흑
 						ScoreFrame.status.setText(sno + " 에 해당하는 자료가 없습니다.");
 
 						tfId.setText("");
