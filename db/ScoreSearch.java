@@ -1,4 +1,3 @@
-// 은빈푼거
 
 package db;
 
@@ -39,7 +38,6 @@ public class ScoreSearch extends JPanel {
 		add(getBtnSearch());
 		add(getScrollPane());
 		
-		//smodel = new DefaultTableModel();
 		dao = new ScoreDao();
 	}
 
@@ -73,13 +71,7 @@ public class ScoreSearch extends JPanel {
 					
 					smodel.setNumRows(0);
 				
-					/*
-					 * for(int i=0; i<list.size(); i++) {
-					 
-						smodel.addRow(list.get(i).getVector());
-					} */
-					
-					for(ScoreVo v : list) {	//향상된 for문, 첨자 i가 필요없는경우 사용가능
+					for(ScoreVo v : list) {
 						smodel.addRow(v.getVector()); 
 					}
 				}
