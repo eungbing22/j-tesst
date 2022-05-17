@@ -1,4 +1,4 @@
-// 0428 마지막1
+// 0428
 
 package db;
 
@@ -12,7 +12,6 @@ public class StudentVo {
 	String email;
 	String phone;
 	
-	
 	public StudentVo() {}
 	
 	public StudentVo(String id, String mName, String pwd, String email, String phone) {
@@ -22,7 +21,6 @@ public class StudentVo {
 		this.email = email;
 		this.phone = phone;		
 	}
-	
 	
 	//DefaultTableModel에 row를 추가하기 위한 메서드
 	public Vector<String> getVector(){
@@ -37,8 +35,6 @@ public class StudentVo {
 		return v;
 		
 	}
-	
-	
 	
 	//getter&setter
 	public String getId() {
