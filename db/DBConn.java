@@ -16,7 +16,7 @@ import java.sql.DriverManager;
 
 public class DBConn {
 
-		//보안떄문에 private
+		// 보안을 위해 private으로 선언
 		private String driver = "com.mysql.cj.jdbc.Driver";
 		private String path = "jdbc:mysql://localhost:3306/lecture";
 		private String user = "hong";
