@@ -53,8 +53,6 @@ public class StudentModify extends JPanel {
 		add(getBtnDelete());
 		
 		dao = new StudentDao();
-		//맨위에 해도 된다고는 하심
-
 	}
 	public JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -111,12 +109,10 @@ public class StudentModify extends JPanel {
 			btnSearch.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-				//
 				String id = tfId.getText().trim();
 				StudentVo vo = dao.selectOne(id);
 				if(vo!=null) {
 					tfName.setText(vo.getmName());
-					//암호 패스
 					tfEmail.setText(vo.getEmail());
 					tfPhone.setText(vo.getPhone());
 				}else {
@@ -125,9 +121,7 @@ public class StudentModify extends JPanel {
 					tfEmail.setText("");
 					tfPhone.setText("");
 				}
-				//
-					
-				}
+			    }
 			});
 			btnSearch.setBackground(Color.GRAY);
 			btnSearch.setForeground(Color.WHITE);
@@ -187,7 +181,6 @@ public class StudentModify extends JPanel {
 			btnUpdate.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					//
 					String id = tfId.getText().trim();
 					String mName = tfName.getText().trim();
 					String pwd = tfPwd.getText().trim();
@@ -200,11 +193,9 @@ public class StudentModify extends JPanel {
 					
 					if(b) {
 						ScoreFrame.status.setText("자료가 수정되었습니다.");
-						
 					}else {
 						ScoreFrame.status.setText("자료 수정중 오류가 발생했습니다.");	
-					}
-					
+					}	
 				}
 			});
 			btnUpdate.setBackground(Color.GRAY);
@@ -228,19 +219,15 @@ public class StudentModify extends JPanel {
 					if(b) {
 						ScoreFrame.status.setText("자료가 삭제 되었습니다.");
 						
-						//자료 삭제
-						//id는 놔두신다심
 						tfPwd.setText("");
 						tfName.setText("");
 						tfEmail.setText("");
 						tfPhone.setText("");
-						
-						tfId.requestFocus(); // 커서를 id로 !
+						tfId.requestFocus(); // id로 커서 이동
 						
 					}else {
 						ScoreFrame.status.setText("자료 삭제중 오류가 발생되었습니다.");
 					}
-					//
 				}
 				
 			});
