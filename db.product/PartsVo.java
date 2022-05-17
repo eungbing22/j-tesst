@@ -1,4 +1,4 @@
-// 0502_ 오후 3시반부터
+// 0502
 
 package db.product;
 
@@ -13,12 +13,11 @@ public class PartsVo {
 	String spec;
 	int price;
 	DecimalFormat df = new DecimalFormat("###,###");
-	//천단위 기호로 표시하자!
+	//천단위 분리기호로 표시
 	
 	//오버로딩
 	PartsVo() {}
 	
-	//한건의 데이터를 넣는게 vo!ㅋ
 	//생성자 메서드
 	PartsVo(String code, String codeName, String spec, int price){
 		this.code = code;
@@ -40,12 +39,11 @@ public class PartsVo {
 	//DefaultTableModel을 위한 메서드 getVector를 생성
 	public Vector<String> getVector(){
 		Vector<String> v = new Vector<String>();
-		v.add(no+""); //테이블에서만 사용하는 no
+		v.add(no+""); // 테이블에서만 사용하는 no
 		v.add(code);
 		v.add(codeName);
 		v.add(spec);
 		v.add(df.format(price));
-		//소수점을 사용하고, 천단위 분류 기호로 사용하겠다 라는 의미.
 		return v;
 	}
 	
