@@ -1,10 +1,5 @@
 //0429_오후
 
-// 여러개 같이 사용중
-// DBConn
-// StudentInterface, StudentDao, StudentVo, StudentInput, StudentModify, StudentDelete;
-// ScoreInterface, ScoreDao, ScoreVo, ScoreInput, ScoreModify, ScoreDelete;
-
 package db;
 
 import java.sql.Connection;
