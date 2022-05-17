@@ -1,5 +1,4 @@
 // 0428_2
-// 오후 1시반부터 여러개 혼합중
 
 // DBConn
 // StudentInterface, StudentDao, StudentVo, StudentInput, StudentModify, StudentDelete;
@@ -110,16 +109,12 @@ public class ScoreFrame extends JFrame {
 			mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//
-					if (my != null) { // not null이면
+					if (my != null) {
 						contentPane.remove(my);
-						// my를 지워줘
 					}
 					my = new StudentInput();
-					// 새로 만들어서 생성해서 넣고 그걸 my라고 하자
 					contentPane.add(my);
-					// 부모 타입의 거기다가 넣어줘? => 다형성
-					contentPane.updateUI();
-					// 바뀐 UI를 바로 적용해줘!
+					contentPane.updateUI(); // 바뀐 UI를 바로 적용
 
 				}
 			});
@@ -254,7 +249,7 @@ public class ScoreFrame extends JFrame {
 
 	public JLabel getStatus() {
 		if (status == null) {
-			status = new JLabel("오늘도 활기찬 하루 보내세요^-^!!");
+			status = new JLabel("오늘도 활기찬 하루 보내세요!");
 			status.setForeground(Color.WHITE);
 			status.setBackground(new Color(173, 216, 230));
 			status.setOpaque(true);
