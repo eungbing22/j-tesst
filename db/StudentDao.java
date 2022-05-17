@@ -1,5 +1,4 @@
 // 0429_2
-// 오전 10시 30분 수업
 
 package db;
 
@@ -16,8 +15,6 @@ public class StudentDao implements StudentInterface {
 	PreparedStatement ps;
 	ResultSet rs;
 	
-	
-	//생성자로만들어서
 	StudentDao() {
 		this.conn = new DBConn().getConn();
 	}
@@ -27,12 +24,7 @@ public class StudentDao implements StudentInterface {
 		
 		boolean b = false;
 		
-		//1. SQL문장을 만든다
 		String sql = "insert into student(id, mName, pwd, email, phone) values(?, ?, ?, ?, ?)";
-		
-		//2.PreparedStatement를 만든다
-		
-		// 다 써줘야 하니까 이왕이면 필드로 꺼내면 편하다!
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -41,14 +33,8 @@ public class StudentDao implements StudentInterface {
 			ps.setString(3, vo.getPwd() );
 			ps.setString(4, vo.getEmail() );
 			ps.setString(5, vo.getPhone() );
-			
-		// 3. 저장잘못될까바 오토 커밋 false
 			conn.setAutoCommit(false);
-			
-		// 반환 execute	
 			int n = ps.executeUpdate();
-			
-		// 
 			if (n>0) {
 				b = true;
 				conn.commit();
@@ -65,9 +51,6 @@ public class StudentDao implements StudentInterface {
 
 	@Override
 	public List<StudentVo> select(String findStr) {
-		// list로 만들어서 반환하라~~
-		
-		//null값이면 나중에 불편해서 재정의함.. 
 		List<StudentVo> list = new ArrayList<StudentVo>();
 		
 		String sql = "select * from student "
@@ -116,7 +99,6 @@ public class StudentDao implements StudentInterface {
 		ps.setString(1, id);
 		rs = ps.executeQuery();
 		
-		//while도 상관없는데 그냥 1건이라 next
 		if(rs.next()) {
 			vo = new StudentVo(
 				rs.getString("id"),
@@ -127,27 +109,20 @@ public class StudentDao implements StudentInterface {
 				);
 		}
 		
-		
 		}catch(Exception e) {
 			e.printStackTrace();
 			
 		}
-		//vo를 만들어 리턴하겠다
 		return vo;
 	}
 
 	@Override
 	public boolean update(StudentVo vo) {
-		
 		boolean b  = false;
-	
 		String sql = "update student set mName=?, email=?, phone=? "
 				+ "where id = ? and pwd = ? ";
-		
 		try {
 			ps=conn.prepareStatement(sql);
-			
-			
 			ps.setString(1, vo.getmName());
 			ps.setString(2, vo.getEmail());
 			ps.setString(3, vo.getPhone());
@@ -172,16 +147,12 @@ public class StudentDao implements StudentInterface {
 	@Override
 	public boolean delete(String id, String pwd) {
 		boolean b = false;
-		
 		String sql = "delete from student where id=? and pwd=?";
-		
 		try { 
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pwd);
-			
 			int n = ps.executeUpdate();
-			
 			if(n>0){
 				b=true;
 				conn.commit();
