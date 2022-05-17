@@ -152,7 +152,6 @@ public class StudentInput extends JPanel {
 			btnInsert.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					//
 					String id = tfId.getText().trim();
 					String mName = tfName.getText().trim();
 					String pwd = tfPwd.getText().trim();
@@ -175,8 +174,6 @@ public class StudentInput extends JPanel {
 					}else {
 						ScoreFrame.status.setText("저장 중 오류가 발생했습니다.");
 					}
-					//
-					
 				}
 			});
 			btnInsert.setBackground(Color.GRAY);
