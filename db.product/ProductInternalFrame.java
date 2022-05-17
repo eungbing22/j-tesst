@@ -133,32 +133,31 @@ public class ProductInternalFrame extends JInternalFrame {
 
 		// 셀 너비 설정
 		table.getColumn("순번").setPreferredWidth(30);
-        table.getColumn("제품코드").setPreferredWidth(53);
-        table.getColumn("제품명").setPreferredWidth(92);    
-        table.getColumn("제품정보").setPreferredWidth(60);
-        table.getColumn("판매일자").setPreferredWidth(53);
-        table.getColumn("수량").setPreferredWidth(28);      
-        table.getColumn("단가").setPreferredWidth(70);
-        table.getColumn("금액").setPreferredWidth(75);
-		
-        // 센터 정렬
-        table.getColumn("순번").setCellRenderer(cRender);
-        table.getColumn("제품코드").setCellRenderer(cRender);
-        table.getColumn("판매일자").setCellRenderer(cRender);
-        
-        // 우측 정렬
-        table.getColumn("수량").setCellRenderer(rRender);
-        table.getColumn("단가").setCellRenderer(rRender);
-        table.getColumn("금액").setCellRenderer(rRender);
-		
-        // 날짜 설정
+		table.getColumn("제품코드").setPreferredWidth(53);
+		table.getColumn("제품명").setPreferredWidth(92);    
+		table.getColumn("제품정보").setPreferredWidth(60);
+		table.getColumn("판매일자").setPreferredWidth(53);
+		table.getColumn("수량").setPreferredWidth(28);      
+		table.getColumn("단가").setPreferredWidth(70);
+		table.getColumn("금액").setPreferredWidth(75);
+
+		// 센터 정렬
+		table.getColumn("순번").setCellRenderer(cRender);
+		table.getColumn("제품코드").setCellRenderer(cRender);
+		table.getColumn("판매일자").setCellRenderer(cRender);
+
+		// 우측 정렬
+		table.getColumn("수량").setCellRenderer(rRender);
+		table.getColumn("단가").setCellRenderer(rRender);
+		table.getColumn("금액").setCellRenderer(rRender);
+
+		// 날짜 설정
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String nalTemp = sdf.format(new Date());	
 		tfNal.setText(nalTemp);
 	
 		dao = new ProductDao();
 		initData();
-	
 	}	
 	
 	//initData 메서드
@@ -356,9 +355,9 @@ public class ProductInternalFrame extends JInternalFrame {
 					String findStr = tfFindStr.getText();
 					List<ProductVo> list = dao.select(findStr);
 					model.setNumRows(0);
-					for(ProductVo v : list) { //향상된 for문
+					for(ProductVo v : list) {
 						model.addRow(v.getVector());
-						}
+					}
 				}
 			});
 			btnFind.setForeground(Color.WHITE);
@@ -413,15 +412,15 @@ public class ProductInternalFrame extends JInternalFrame {
 				public void actionPerformed(ActionEvent e) {	
 					try {
 						int sno = Integer.parseInt(tfSno.getText().trim());
-							
+						//JOptionPane을 활용한 dialog
 						int answer = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "삭제", JOptionPane.YES_NO_OPTION );
 						if(answer==JOptionPane.YES_OPTION){  //yes option에만 적용
 							boolean b = dao.delete(sno);
 							if(b) {
 								status.setText("판매 정보가 삭제되었습니다.");
-								btnFind.doClick(); //바로 보이게
+								btnFind.doClick(); // 결과 바로 list에 출력
 								clear(); // 초기화
-								tfCode.requestFocus(); // 커서 코드로 이동
+								tfCode.requestFocus();
 							}else {
 								status.setText("삭제중 오류가 발생했습니다.");
 							}
@@ -580,7 +579,7 @@ public class ProductInternalFrame extends JInternalFrame {
 		if (table == null) {		
 			table = new JTable(model);
 		           
-			//자동으로 정렬
+			// 자동으로 정렬
 			table.setAutoCreateRowSorter(true);
 			
 			table.addMouseListener(new MouseAdapter() {
@@ -588,7 +587,7 @@ public class ProductInternalFrame extends JInternalFrame {
 				public void mouseClicked(MouseEvent e) {
 					int row = table.getSelectedRow();
 					Object o = table.getValueAt(row, 0);
-					int sno = Integer.parseInt((String)o); // 캐스팅
+					int sno = Integer.parseInt((String)o);
 					ProductVo vo = dao.selectOne(sno);
 					
 					if(vo!= null) {
