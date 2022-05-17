@@ -21,11 +21,8 @@ public class ProductDao implements ProductInterface {
 	//tfSno에 순번표시를 위한 메서드 생성
 	public int getSno() {
 		conn = new DBProductConn().getConn();
-		
 		int sno = 0;
-		
 		String sql = "select max(sno) as k from product";
-		
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -75,7 +72,6 @@ public class ProductDao implements ProductInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return b;
 	}
 
@@ -85,7 +81,6 @@ public class ProductDao implements ProductInterface {
 		conn = new DBProductConn().getConn();
 		
 		boolean b = false;
-		
 		String sql = "update product set code=?, nal=?, ea=?, price=?, amt=? "
 				   + "where sno=?";
 		try {
@@ -151,7 +146,7 @@ public class ProductDao implements ProductInterface {
 	@Override
 	public List<ProductVo> select(String findStr) {
 		conn = new DBProductConn().getConn();
-		//검색버튼눌렀을때
+		//검색 버튼 눌렀을때
 		List<ProductVo> list = new ArrayList<ProductVo>();
 		
 		String sql = "select sno, p1.code code, p1.codeName codeName, p1.spec spec, "
@@ -239,8 +234,7 @@ public class ProductDao implements ProductInterface {
 
 	@Override
 	public ProductVo selectOne(String code) {
-		// 제품코드조회
-		// parts에서 조회
+		// 제품코드 parts에서 조회
 		conn = new DBProductConn().getConn();
 		
 		String sql = "select code, codeName, spec, price from "
