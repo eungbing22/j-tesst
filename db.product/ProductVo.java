@@ -1,4 +1,4 @@
-//0502_ 오후 3시반부터
+//0502
 
 package db.product;
 
@@ -17,10 +17,10 @@ public class ProductVo {
 	int amt;
 	DecimalFormat df = new DecimalFormat("###,###");
 	
-	//오버로딩
+	//오버 로딩
 	public ProductVo(){}
 	
-	//저장용 생성자			// 퍼포먼스의 향상을 기대할 수 있다!
+	//퍼포먼스 향상을 위한 저장용 생성자 메서드
 	public ProductVo(int sno, String code, String nal, int ea, int price){
 		this.sno = sno;
 		this.code = code;
@@ -33,7 +33,6 @@ public class ProductVo {
 	//수정,삭제를 위한 값을 표시하는 생성자  //view
 	public ProductVo(int sno, String code, String codeName, String spec, String nal, 
 		int ea, int price) {
-		//자기 자신을 부름
 		this(sno, code, nal, ea, price);
 		//중복코드 최소화
 		this.codeName = codeName;
@@ -41,7 +40,7 @@ public class ProductVo {
 		
 	}
 		
-	//DefaultTableModel에 셋팅할 vector 생성
+	//DefaultTableModel에 세팅할 vector 생성
 	Vector<String> getVector(){
 		Vector<String> v = new Vector<String>();
 		v.add(sno+"");
@@ -55,7 +54,7 @@ public class ProductVo {
 		return v;
 	}
 	
-	//getter&setter 부르기
+	//getter&setter
 	public int getSno() {
 		return sno;
 	}
