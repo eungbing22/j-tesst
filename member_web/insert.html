@@ -1,0 +1,57 @@
+<!-- 0314 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert</title>
+<!-- 다음 API 연결 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+
+<h1>학생 정보 입력</h1>
+<form name='frm_member' method='post' action='insert_result.jsp'>
+	<label>학번</label>
+	<input type='text' name='mid' value='hong'/>
+	<br/>
+	
+	<label>성명</label>
+	<input type='text' name='irum' value='길동이'/>
+
+	<label>암호</label>
+	<input type='password' name='pwd' value='1111'/>
+	<br/>
+	
+	<label>연락처</label>
+	<input type='text' name='phone' value='010-0000-0000'/>
+	<br/>
+	
+	<label>우편번호</label>
+	<input type='text' name='zip' readOnly/>
+	<input type='button' value='우편번호 검색' name='btnZip'/>
+	<br/>
+	<input type='text' name='address'/>
+	<br/>
+	
+	<label>상세주소</label>
+	<input type='text' name='address_detail'/>
+	
+	<hr/>
+	<input type='button' value='취소'/>
+	<input type='submit' value='저장'/>	
+</form>
+
+	<script>
+		var frm = document.frm_member;
+		frm.btnZip.onclick = function(){
+			new daum.Postcode({
+				oncomplete : function(data){
+					frm.zip.value = data.zonecode;
+					frm.address.value = data.address;
+				}
+			}).open();
+		}
+	</script>
+</body>
+</html>
