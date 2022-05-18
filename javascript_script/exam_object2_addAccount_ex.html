@@ -43,7 +43,7 @@
 		}
 		
 		// 중복 계좌 체크
-		var acc = window.opener.checkAccount(frm.no.value); //자기를 연 윈도우가 가지고 있는 함수인 체크 어카운트?! 
+		var acc = window.opener.checkAccount(frm.no.value);
 		if(acc != null){
 			alert('이미 개설된 계좌번호 입니다./중복 계좌');
 			return;
@@ -60,9 +60,7 @@
 		alert('계좌가 추가되었습니다.');
 		self.close();
 	}
-	
-	//-금액인거는 내가 체크하십슈!!
-	//계좌승인후 메시지 뿌리는거 설정 하십슈!
+
 </script>
 </body>
 </html>
