@@ -1,0 +1,170 @@
+<!-- 0310 B-SG EDI 현황-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript/array_ex_0310</title>
+<style>
+	#javascript{
+		width : 1000px;
+	}
+	*{
+		box-sizing : border-box;
+		line-height : 0.7em;
+		margin-bottom : 10px;
+	}
+	#javascript h3{
+		text-align : center;
+	}
+	#javascript h4{
+		text-align : center;
+	}
+	#javascript form>label{
+		display : inline-block;
+		width : 80px;
+		text-align : right;
+	}
+	#javascript #result{
+		margin-top : 10px;
+		padding : 10px;
+		border : 0.5px solid #eee;
+		min-height : 200px;		
+		font-size : 1em;	
+	}
+	#javascript .r{
+		border: 0.2px solid #fff;
+		/* border-bottom:1px solid #ccc; */
+		font-weight:bolder;
+		text-align: right;
+	}
+	#javascript .r2{
+		font-weight:bolder;
+		color: #999;
+		/* background-color:#fff; */
+	}
+	#javascript hr{
+	border : 0.1px solid #eee; 
+}
+	#javascript .btn{
+		text-align: center;
+	}
+	#javascript .nal{
+		padding:5px;
+		font-weight:bolder;
+		text-align: center;
+	}
+	#javascript #result .title{
+		background-color:#eee;
+		color:#000;
+		padding:1px;
+	}
+	#javascript #result span{
+		display: inline-block;
+		text-align: right;
+	}
+	#javascript .item:hover{
+		background-color:#eee;
+	}
+	
+	#javascript #result .pname{	width:200px; text-align:right;}
+	#javascript #result .ea{width:70px; text-align:right;}
+	#javascript #result .price{width:150px; text-align:right;}	
+	#javascript #result .amt{width:180px; text-align:right;}
+	#javascript #result .vat{width:130px; text-align:right;}
+	#javascript #result .totAmt{width:200px; text-align:right;}
+</style>
+
+</head>
+<body>
+<div id='javascript'>
+	<h3>B-SG EDI 현황</h3>
+	<div class='left'>
+		<form name='frm'>
+			<label>품명</label>
+			<input type='text' name='pName' value='22 SS collection 01 dress'/>
+			<br/>
+			<label>수량</label>
+			<input type='text' name='ea' size='5' value='50'/>
+			<br/>
+			<label>단가</label>
+			<input type='text' name='price' size='5' value='1200000' />
+			<input type='button' name='btnAccount' value='Account(계산)'/>
+			<hr/>
+			<label>금액</label>
+			<input type='text' name='amt' class='r'/>
+			<br/>
+			<label>부가세</label>
+			<input type='text' name='vat' class='r'/>
+			<br/>
+			<label>총금액</label>
+			<input type='text' name='totAmt' class='r r2'/>
+			<hr/>	
+			<div class='btn'>
+				<input type='button' name='btnSave' value='Save(저장)'/>
+				<input type='button' name='btnPrint' value='Print(출력)'/>
+			</div>
+			
+		</form>
+	</div>
+	<div id='result'></div>
+</div>
+
+	<script>
+		var frm = document.frm;
+		var products = [];								//데이터가 저장될 배열
+		frm.btnAccount.onclick = function(){
+			var ea = Number(frm.ea.value);
+			var pr = Number(frm.price.value);
+			var amt = parseInt(ea*pr);
+			var vat = parseInt( (amt*0.1) );
+			var totAmt = amt + vat;
+		
+			frm.amt.value= amt.toLocaleString('ko');
+			frm.vat.value = vat.toLocaleString('ko');
+			frm.totAmt.value = totAmt.toLocaleString('ko');
+		
+		}
+		
+		frm.btnSave.onclick = function(){
+			var array={
+				'pname' : frm.pName.value,
+				'ea'    : frm.ea.value,
+				'price' : frm.price.value,
+				'amt'   : frm.amt.value,
+				'vat'   : frm.vat.value,
+				'totAmt': frm.totAmt.value
+			}
+			products.push(array);
+			
+		}
+		
+		frm.btnPrint.onclick = function(){
+			var r = document.getElementById('result');
+			
+			var str = '<h4> EB brand 3월 SALES 현황 </h4>'
+					+ "<div class='nal'>" + new Date().toLocaleDateString() 
+					+ '</div>'
+			        + "<div class='title'>"
+			        + "  <span class='pname'>품명</span>"
+			        + "  <span class='ea'>수량</span>"
+			        + "  <span class='price'>단가</span>"
+			        + "  <span class='amt'>금액</span>"
+			        + "  <span class='vat'>부가세</span>"
+			        + "  <span class='totAmt'>총금액</span>"
+			       	+ "</div>";
+
+			for(x of products){
+				str += "<div class='item'>"
+			        + "  <span class='pname'>"  + x.pname  + "</span>"
+			        + "  <span class='ea'>"     + x.ea     + "</span>"
+			        + "  <span class='price'>"  + x.price  + "</span>"
+			        + "  <span class='amt'>"    + x.amt    + "</span>"
+			        + "  <span class='vat'>"    + x.vat    + "</span>"
+			        + "  <span class='totAmt'>" + x.totAmt + "</span>"
+			       	+ "</div>";
+			}		       	   	
+			r.innerHTML = str;	
+		}
+	</script>
+</body>
+</html>

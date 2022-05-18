@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript/exam_object2_addAccount_ex</title>
+<style>
+	#javascript{
+		width : 300px;
+	}
+
+   form label{
+      display : inline-block;
+      width : 70px;
+   }
+</style>
+</head>
+
+<body>
+<div id='javascript'>
+   <h4>계좌추가</h4>
+   <form name='frm'>
+      <label>예금주</label>
+      <input type='text' name='name' size='6'>
+      <br/>
+      <label>계좌번호</label>
+      <input type='text' name='no'/>
+      <br/>
+      <label>예금액</label>
+      <input type='text' name='balance' size='8'/>
+      <br/>
+      <label></label>
+      <input type='button' value='계좌승인' name='btnAddAccount'>
+   </form>
+</div>
+
+<script>
+	var frm = document.frm;
+	frm.btnAddAccount.onclick = function(){
+		if(frm.name.value == '' 
+		   || frm.no.value == '' || frm.balance == ''){
+			alert('모든 항목을 입력하세요.');
+			return;
+		}
+		
+		// 중복 계좌 체크
+		var acc = window.opener.checkAccount(frm.no.value); //자기를 연 윈도우가 가지고 있는 함수인 체크 어카운트?! 
+		if(acc != null){
+			alert('이미 개설된 계좌번호 입니다./중복 계좌');
+			return;
+		}	
+		
+		// 계좌 추가
+		acc ={
+			"name" 	  : frm.name.value,
+			"no"	  : frm.no.value,
+			"balance" : Number(frm.balance.value)
+		}
+		
+		window.opener.account.push(acc);
+		alert('계좌가 추가되었습니다.');
+		self.close();
+	}
+	
+	//-금액인거는 내가 체크하십슈!!
+	//계좌승인후 메시지 뿌리는거 설정 하십슈!
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

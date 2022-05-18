@@ -1,0 +1,149 @@
+<!-- object 생성 example 0317 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript/exam_object_0317</title>
+<style>
+	#javascript{
+		width : 650px;
+		margin : 20px auto;
+		border : 0.2px solid #D27D2D;
+		border-radius : 6px;
+		position : relative;
+		min-height : 400px;
+	}		
+	#javascript *{
+		box-sizing : border-box;
+	}
+	#javascript h3{
+		color :  #F88379;
+		text-align : center;
+	}
+	#javascript form{
+		margin : 10px 30px;
+	}
+	#javascript form label{
+		line-height : 1.5em;
+		display : inline-block;
+		width : 60px;
+	}
+	#javascript .btnZone{
+		margin : 20px 65px; 
+	}
+	#javascript #result{
+		--background-color : #F88379;
+		color :#F88379;
+		min-height : 200px;
+		max-height : 350px;
+		overflow : auto;
+		margin : 10px 5px 30px 5px;
+		padding : 10px;
+		border : 0.5px solid #FAD5A5;	
+	}
+	
+	#javascript #info{
+		position : absolute;
+		bottom : 0px;
+		width : 100%;
+		padding : 5px;
+		height : 35px;
+		line-height : 35px;
+		text-align : center;
+	}
+	
+   #javascript span{ display: inline-block;}
+   #javascript .pn{width:230px}
+   #javascript .ea{width:150px;text-align: right}
+   #javascript .pr{width:230px;text-align:right;}
+</style>
+</head>
+
+<body>
+<div id='javascript'>
+	<h3>B-SG EDI</h3>
+		<form name='frm'>
+			<label>상품명</label>
+			<input type='text' name='pName' value='m_trenchcoat'/>
+			<br/>
+			<label>수량</label>
+			<input type='text' name='ea' value='10'/>
+			<br/>
+			<label>금액</label>
+			<input type='text' name='price' value='3190000' /> 
+			<br/>
+			<div class='btns'>
+				<input type='button' value='Save(저장)' name='btnSave'/>
+				<input type='button' value='Print(출력)' name='btnPrint'/>
+			</div>
+		</form>
+	<div id='result'></div>
+	<div id='info'>작업을 시작하세요!</div>
+</div>
+
+<script>
+	var result = document.getElementById('result');
+	var info = document.getElementById('info');
+	var frm = document.frm;
+	var products = [];
+	function Product(name, ea, price){
+		this.name = name;
+		this.ea = ea;
+		this.price = price;
+	}
+	
+	//sample 
+	products.push( new Product('m_trenchcoat', 10, 10000));
+	products.push( new Product('w_dress', 5, 50000));
+	products.push( new Product('m_shirts', 20, 20000));
+	products.push( new Product('w_shirts', 5, 20000));
+	products.push( new Product('w_trenchcoat', 10, 30000));
+	products.push( new Product('m_suit', 15, 25000));
+	
+	frm.btnSave.onclick = function(){
+		var n = frm.pName.value;
+		var e = Number(frm.ea.value);
+		var p = Number(frm.price.value);
+		
+		var obj = new Product(n, e, p);
+		products.push(obj);
+		info.innerHTML = '자료가 저장되었습니다!';
+		
+		setTimeout(function(){
+			info.innerHTML = '작업을 시작하세요!';
+		}, 1500); //1.5초 후에 timeout 되도록 설정
+	}
+	
+	frm.btnPrint.onclick = function(){
+		//제품명 오름차순으로 정렬	
+		products.sort(asc);
+	
+		var str = products.length + ' 건<hr/>';
+		str += "<span class='pn'>상품명</span>";
+		str += "<span class='ea'>수량</span>";
+		str += "<span class='pr'>금액</span>";
+		str += "<hr/>";
+		
+		for(x of products){
+		str += "<span class=pn>" + x.name + "</span>";
+		str += "<span class=ea>" + x.ea.toLocaleString('ko') + "</span>";
+		str += "<span class=pr>" + x.price.toLocaleString('ko') + "</span>";
+		str += "<br/>";
+		}
+		
+		result.innerHTML = str;
+		info.innerHTML = '자료가 모두 출력 되었습니다!'
+		
+		setTimeout(function(){
+			info.innerHTML = '작업을 시작하세요!';
+		}, 1500 );
+	}
+	
+	function asc(x,y){
+		if( x.name > y.name ) return 1;
+		else return -1;
+	}
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+#javascript{
+	width : 650px;
+	margin : 20px auto;
+	border : 0.3px solid #7393B3;
+	border-radius : 7px;
+	position : relative;
+	min-height : 300px;
+}
+
+#javascript *{
+	box-sizing : border-box;	
+}
+#javascript h4{
+	color : #088f8f;
+	text-align : center;
+}
+#javascript form{ 
+	margin : 10px 30px;
+}
+#javascript form label{
+	line-height : 0.8em;
+	display : inline-block;
+	width : 80px;
+	color : #088f8f;
+}
+#javascript .btns{
+	margin : 20px 65px;	
+}
+#javascript #result{
+	--background-color : #fff;
+	color : #00008B;
+	min-height : 300px;
+	max-height : 450px;  
+	overflow : auto; 
+	margin : 10px 5px 30px 5px;
+	padding : 10px;
+	border : 0.5px solid #088f8f;
+}
+#javascript #info{
+	position : absolute;
+	bottom : 0px;
+	width : 100%;
+	padding : 2px;
+	height : 35px;
+	line-height : 35px;
+	text-align : center;
+}
+#javascript span{ display : inline-block; }
+#javascript .account{ width : 100px; }
+#javascript .date{ width : 100px; }
+#javascript .flag{ width : 150px; text-align : right; }
+#javascript .amount{ width:200px; text-align : right; }
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript/exam_object2_0321</title>
+<link rel = 'stylesheet' type = 'text/css' href = './exam_object2_0321.css'>		
+</head>
+<body>
+<div id='javascript'>
+	<h4>E_BK 은행_계좌 거래 내역 조회</h4>
+	<form name='bank'>
+		<label>계좌번호</label>
+		<input type='search' name='account' value='12345'/>
+		<output name='accName'></output>
+		<br/>
+		<label>거래분류</label>
+		<label><input type='radio' name='trans' value='입금' checked>입금</label>
+		<label><input type='radio' name='trans' value='출금'/>출금</label>	
+		<br/>
+		<label>거래일자</label>
+		<input type='date' name='nal'/>
+		<br/>
+		<label>거래금액</label>
+		<input type='text' name='amount' value='10000' /> 
+		<input type='button' value='Save(확인)' name='btnSave'/>
+		<br/>
+		<hr/>
+		<div class='btns'>
+			<input type='button' value='Print(출력)' name='btnPrint'/>
+			<input type='button' value='All Print(전체 계좌정보 출력)' name='btnPrintAccount'/>
+			<input type='button' value='Add(신규 계좌 추가)' name='btnAddAccount'/>
+		</div>
+		</form>
+	<div id='result'>여기에 결과가 출력됩니다.</div>
+</div>
+<script src = 'exam_object2_0321.js'></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
